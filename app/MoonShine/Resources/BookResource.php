@@ -5,10 +5,9 @@ namespace App\MoonShine\Resources;
 use App\Models\Book;
 use Illuminate\Database\Eloquent\Model;
 use MoonShine\Actions\FiltersAction;
-use MoonShine\Fields\File;
 use MoonShine\Fields\ID;
-use MoonShine\Fields\Image;
 use MoonShine\Fields\Text;
+use MoonShine\Fields\Url;
 use MoonShine\Resources\Resource;
 
 class BookResource extends Resource
@@ -21,11 +20,17 @@ class BookResource extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('name'),
-            Image::make('preview'),
-            Image::make('poster'),
-            Text::make('description'),
-            File::make('url')
+            Text::make('Название', 'name')
+            ->required(),
+            Url::make('Ссылка на скриншот', 'screenshot')
+            ->required()
+            ->hideOnIndex(),
+            Text::make('Описание', 'description')
+            ->required()
+            ->hideOnIndex(),
+            Url::make('Ссылка на установку', 'url')
+            ->required()
+            ->hideOnIndex()
         ];
     }
 

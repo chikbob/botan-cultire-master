@@ -16,4 +16,9 @@ class Book extends Model
     {
         return $this->hasMany(BookScreenshot::class);
     }
+
+    public function infos(): HasMany
+    {
+        return $this->hasMany(Info::class);
+    }
 }

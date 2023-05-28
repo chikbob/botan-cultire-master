@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Pages;
 
-use App\Http\Resources\BookResource;
 use App\Models\Book;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\Visitor;
+use Illuminate\Http\Request;
+use App\Http\Resources\BookResource;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Validator;
 
 class BookPageController
 {

@@ -18,7 +18,7 @@ import { cnHeader } from './header.const';
 .header__nav {
     background: rgba(255, 255, 255, 0.55);
     width: 100%;
-    height: 98px;
+    height: 100px;
     display: flex;
     justify-content: space-around;
     position: relative;

@@ -12,5 +12,6 @@ import FooterNav from './footer__nav.vue';
 <style lang="scss">
 .footer {
     position: relative;
+    z-index: 0;
 }
 </style>

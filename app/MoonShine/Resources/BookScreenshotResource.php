@@ -8,6 +8,7 @@ use MoonShine\Actions\FiltersAction;
 use MoonShine\Fields\BelongsTo;
 use MoonShine\Fields\ID;
 use MoonShine\Fields\Image;
+use MoonShine\Fields\Url;
 use MoonShine\Resources\Resource;
 
 class BookScreenshotResource extends Resource
@@ -20,8 +21,10 @@ class BookScreenshotResource extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('book', 'book', 'name'),
-            Image::make('src')
+            BelongsTo::make('Книга', 'book', 'name')
+            ->required(),
+            Url::make('Ссылка на картинку', 'src')
+            ->required(),
         ];
     }
 

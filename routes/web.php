@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Pages\BookPageController;
+use App\Http\Controllers\Pages\VisitorController;
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -21,6 +22,8 @@ Route::get('/', function () {
 });
 
 Route::get('/books/{book}', BookPageController::class);
+
+Route::get('/Visitor/index', VisitorController::class);
 
 Route::get('/care', fn()=>Inertia::render('care'));
 

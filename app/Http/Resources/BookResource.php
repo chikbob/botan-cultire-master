@@ -11,7 +11,8 @@ class BookResource extends JsonResource
         return array_merge(
             parent::toArray($request),
             [
-                'screenshots' => $this->screenshots
+                'screenshots' => $this->screenshots,
+                'infos' => $this->infos
             ]
         );
     }

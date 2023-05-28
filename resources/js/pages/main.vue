@@ -63,6 +63,8 @@ import PageLayout from "@/shared/layouts/page-layout/page-layout.vue";
 body {
     margin: 0;
     border: 0;
+
+    background-color: #d6ecbf;
 }
 .body__container {
     background: url('@/assets/background-main.png');

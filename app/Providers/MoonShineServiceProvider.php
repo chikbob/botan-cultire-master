@@ -2,12 +2,13 @@
 
 namespace App\Providers;
 
-use App\MoonShine\Resources\BookResource;
-use App\MoonShine\Resources\BookScreenshotResource;
-use Illuminate\Support\ServiceProvider;
 use MoonShine\MoonShine;
-use MoonShine\Menu\MenuGroup;
 use MoonShine\Menu\MenuItem;
+use MoonShine\Menu\MenuGroup;
+use Illuminate\Support\ServiceProvider;
+use App\MoonShine\Resources\BookResource;
+use App\MoonShine\Resources\InfoResource;
+use App\MoonShine\Resources\VisitorResource;
 use MoonShine\Resources\MoonShineUserResource;
 use MoonShine\Resources\MoonShineUserRoleResource;
 
@@ -16,20 +17,18 @@ class MoonShineServiceProvider extends ServiceProvider
     public function boot(): void
     {
         app(MoonShine::class)->menu([
-            MenuGroup::make('moonshine::ui.resource.system', [
-                MenuItem::make('moonshine::ui.resource.admins_title', new MoonShineUserResource())
+            MenuGroup::make('Системне налаштування', [
+                MenuItem::make('Адміністратори', new MoonShineUserResource())
                     ->translatable()
                     ->icon('users'),
-                MenuItem::make('moonshine::ui.resource.role_title', new MoonShineUserRoleResource())
+                MenuItem::make('Ролі', new MoonShineUserRoleResource())
                     ->translatable()
                     ->icon('bookmark'),
             ])->translatable(),
 
-            MenuItem::make('Book', new BookResource()),
-            MenuItem::make('Book Screenshot', new BookScreenshotResource()),
-
-            MenuItem::make('Documentation', 'https://laravel.com')
-                ->badge(fn() => 'Check'),
+            MenuItem::make('Книги', new BookResource()),
+            MenuItem::make('Опис книги', new InfoResource()),
+            MenuItem::make('Користувачі', new VisitorResource()),
         ]);
     }
 }
