@@ -10,5 +10,9 @@ class Visitor extends Model
 {
     use HasFactory;
 
-    public $guarded = [];
+    protected $fillable = [
+        'name',
+        'telephone',
+        'email'
+    ];
 }

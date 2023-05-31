@@ -6,42 +6,42 @@
                     <div class="text-for-buttons">--- Дізнатися більше ---</div>
                     <div class="links__container">
                         <div class="window__size left__margin">
-                            <router-link to="/varieties" class="navigate">
+                            <Link href="/varities" class="navigate">
                                 <img class="buttons-for-navigate" src='@/assets/plants.png'>
-                            </router-link>
+                            </Link>
                             <text class="text-outside-buttons">Різновиди<br>бонсаю</text>
                         </div>
                         <div class="window__size main__margin">
-                            <router-link to="/ebook" class="navigate">
-                                <img class="buttons-for-navigate" src='@/assets/ebook.png'>
-                            </router-link>
-                            <text class="text-outside-buttons">Електронна<br>книга</text>
+                            <Link href="/appearance" class="navigate">
+                                <img class="buttons-for-navigate" src='@/assets/sauna.png'>
+                            </Link>
+                            <text class="text-outside-buttons">Зовнішній<br>вигляд</text>
                         </div>
                         <div class="window__size right__margin">
-                            <router-link to="/care" class="navigate">
+                            <Link href="/care" class="navigate">
                                 <img class="buttons-for-navigate" src='@/assets/plant.png'>
-                            </router-link>
+                            </Link>
                             <text class="text-outside-buttons">Догляд</text>
                         </div>
                     </div>
                     <div class="links__container">
                         <div class="window__size left__margin">
-                            <router-link to="/inventory" class="navigate">
+                            <Link href="/inventory" class="navigate">
                                 <img class="buttons-for-navigate" src='@/assets/shovel-and-rake.png'>
-                            </router-link>
+                            </Link>
                             <text class="text-outside-buttons">Інвентар</text>
                         </div>
-                        <div class="window__size main__margin">
-                            <router-link to="/appearance" class="navigate">
-                                <img class="buttons-for-navigate" src='@/assets/sauna.png'>
-                            </router-link>
-                            <text class="text-outside-buttons">Зовнішній<br>вигляд</text>
+                        <div class="window__size main__margin ">
+                            <Link href="/info" class="navigate">
+                                <img class="buttons-for-navigate" src='@/assets/book.png'>
+                            </Link>
+                            <text class="text-outside-buttons">Цікава<br>інформація</text>
                         </div>
                         <div class="window__size right__margin">
-                            <router-link to="/info" class="navigate">
-                                <img class="buttons-for-navigate" src='@/assets/book.png'>
-                            </router-link>
-                            <text class="text-outside-buttons">Цікава<br>інформація</text>
+                            <Link href="/books/1" class="navigate">
+                                <img class="buttons-for-navigate" src='@/assets/ebook.png'>
+                            </Link>
+                            <text class="text-outside-buttons">Електронна<br>книга</text>
                         </div>
                     </div>
                 </div>
@@ -59,9 +59,16 @@
 
 <script setup>
 import PageLayout from "@/shared/layouts/page-layout/page-layout.vue";
+import { Link } from '@inertiajs/vue3'
 </script>
 
-<style scoped>
+<style>
+
+body {
+    border: 0;
+    margin: 0;
+    background: #d6ecbf;
+}
 .body__container {
     background: url('@/assets/background-main.png');
 

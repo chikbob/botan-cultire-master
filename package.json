@@ -13,8 +13,11 @@
     "dependencies": {
         "@inertiajs/vue3": "^1.0.6",
         "@vitejs/plugin-vue": "^4.2.1",
+        "maska": "^2.1.9",
         "pinia": "^2.0.35",
         "pinia-class-store": "^1.1.1",
+        "sweetalert2": "^11.7.10",
+        "v-mask": "^2.3.0",
         "vue": "^3.2.47",
         "vue3-bem": "^1.0.8",
         "ziggy-js": "^1.6.0"

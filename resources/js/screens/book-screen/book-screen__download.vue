@@ -5,22 +5,27 @@
                 {{ model.book.name }}
             </div>
             <button @click="isOpen = true" :class="cnBookScreen('download-btn')">
-                Завантажити
+                <div :class="cnBookScreen('download-btn_text')">
+                    Завантажити
+                </div>
             </button>
-            <form @submit.prevent="store">
+            <form @submit.prevent="model.submit">
                 <BookScreenDialogRegistration :open="isOpen" @close="isOpen = !isOpen">
                     <div @click="isOpen = false" :class="cnBookScreen('dialogRegistration-dialog_exit')">X</div>
                     <div :class="cnBookScreen('dialogRegistration-dialog_content')">Заповніть дані, щоб отримати електронну
                         копію
                     </div>
                     <div :class="cnBookScreen('dialogRegistration-input_text')">Ім’я</div>
-                    <input v-model="form.name" :class="cnBookScreen('dialogRegistration-input')" required />
+                    <input placeholder="Ім'я" v-model="form.name" :class="cnBookScreen('dialogRegistration-input')"
+                        required />
                     <div :class="cnBookScreen('dialogRegistration-input_text')">Номер телефону</div>
-                    <input v-model="form.telephone" :class="cnBookScreen('dialogRegistration-input')" required />
+                    <input placeholder="+38 (000) 000-00-00" v-model="form.telephone"
+                        :class="cnBookScreen('dialogRegistration-input')" required />
                     <div :class="cnBookScreen('dialogRegistration-input_text')">Електронна пошта</div>
-                    <input v-model="form.email" :class="cnBookScreen('dialogRegistration-input')" required />
-
-                    <button @click="isClosed()" :class="cnBookScreen('dialogRegistration-btn')">Завантажити</button>
+                    <input placeholder="Електронна пошта" v-model="form.email"
+                        :class="cnBookScreen('dialogRegistration-input')" required />
+                    <button @click="store(isOpen = false)" :class="cnBookScreen('dialogRegistration-btn')" type="submit"><a
+                            :href="file" :class="cnBookScreen('dialogRegistration-btn_text')">Завантажити</a></button>
                 </BookScreenDialogRegistration>
             </form>
         </div>
@@ -33,10 +38,14 @@ import { cnBookScreen } from "./book-screen.const.js";
 import { bookModel } from "./book-screen.model.js";
 import BookScreenDialogRegistration from './book-screen__dialogRegistration.vue'
 import { useForm } from '@inertiajs/vue3';
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 const model = bookModel();
 
 const isOpen = ref(false)
+
+let file = ref(null)
 
 const form = useForm({
     name: null,
@@ -45,13 +54,20 @@ const form = useForm({
 });
 
 function store() {
-    form.post(route('Visitor/index'))
+    console.log(form)
+    if (form.name == null || form.telephone == null || form.email == null || form.name.length == 0 || form.telephone.length == 0 || form.email.length == 0 || form.name == ' ' || form.telephone == ' ' || form.email == ' ') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Упс...',
+            text: 'Введіть дані!',
+        })
+    }
+    else {
+        file = model.book.url
+        console.log('aboba')
+        form.post('/visitor')
+    }
 }
-
-function isClosed() {
-    isOpen = false
-}
-
 </script>
 
 <style lang="scss" scoped>
@@ -118,27 +134,39 @@ function isClosed() {
         text-align: center;
         border-radius: 4px;
         border: none;
-        text-decoration: none;
         text-transform: capitalize;
-        padding: 0 25px;
+
+        padding: 5px 40px;
 
         border-radius: 50px;
 
-        margin: 30px auto 60px;
+        margin: 40px auto 60px;
 
         height: fit-content;
 
         background-color: #8FBC76;
-        color: #fff;
+
 
         cursor: pointer;
+
+        &_text {
+            color: #fff;
+            text-decoration: none;
+        }
     }
 
     &-input {
-        width: 300px;
+        width: 450px;
         height: 30px;
 
         margin: auto;
+
+        font-family: 'Book Antiqua';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        text-align: flex-start;
+        color: #222E21;
 
         &_text {
             font-family: 'Book Antiqua';
@@ -149,7 +177,7 @@ function isClosed() {
 
             margin: 10px auto;
 
-            width: 300px;
+            width: 450px;
             color: #222E21;
         }
     }
@@ -196,20 +224,41 @@ function isClosed() {
         font-style: normal;
         font-weight: 400;
         font-size: 20px;
-        line-height: 48px;
+        line-height: 28px;
         text-align: center;
-        border-radius: 4px;
         border: none;
-        text-decoration: none;
         text-transform: capitalize;
-        padding: 10px 25px;
 
+        padding: 5px 40px;
+
+        height: fit-content;
+
+        background-color: #8FBC76;
+
+
+        cursor: pointer;
+
+        width: 200px;
+        height: 50px;
         border-radius: 50px;
 
         height: fit-content;
 
         background-color: #8FBC76;
-        color: #fff;
+
+        &_text {
+            font-family: 'Book Antiqua';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 48px;
+            text-align: center;
+            text-decoration: none;
+            text-transform: capitalize;
+
+            color: #fff;
+            text-decoration: none;
+        }
     }
 }
 </style>

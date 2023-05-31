@@ -19,11 +19,13 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('index');
+})->name('home');
+
+Route::prefix('/visitor')->group(function () {
+    Route::post('/', [VisitorController::class, 'store']);
 });
 
-Route::get('/books/{book}', BookPageController::class);
-
-Route::get('/Visitor/index', VisitorController::class);
+Route::get('/books/{book}', BookPageController::class)->name('book');
 
 Route::get('/care', fn()=>Inertia::render('care'));
 
